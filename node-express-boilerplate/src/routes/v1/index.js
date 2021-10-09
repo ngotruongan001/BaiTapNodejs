@@ -2,6 +2,7 @@ const express = require('express');
 const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const studentRoute = require('./student.route');
+const classRoute = require('./class.route');
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
 
@@ -19,6 +20,10 @@ const defaultRoutes = [
   {
     path: '/students',
     route: studentRoute,
+  },
+  {
+    path: '/classes',
+    route: classRoute,
   },
 ];
 
@@ -40,6 +45,5 @@ if (config.env === 'development') {
     router.use(route.path, route.route);
   });
 }
-
 
 module.exports = router;
