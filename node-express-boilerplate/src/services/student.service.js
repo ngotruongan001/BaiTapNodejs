@@ -3,16 +3,16 @@ const { Student } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 /**
- * Create a user
- * @param {Object} userBody
+ * Create a student
+ * @param {Object} studentBody
  * @returns {Promise<Student>}
  */
- const createUser = async (userBody) => {
-  return Student.create(userBody);
+ const createStudent = async (studentBody) => {
+  return Student.create(studentBody);
 };
 
 /**
- * Query for users
+ * Query for students
  * @param {Object} filter - Mongo filter
  * @param {Object} options - Query options
  * @param {string} [options.sortBy] - Sort option in the format: sortField:(desc|asc)
@@ -20,54 +20,54 @@ const ApiError = require('../utils/ApiError');
  * @param {number} [options.page] - Current page (default = 1)
  * @returns {Promise<QueryResult>}
  */
-const queryUsers = async (filter, options) => {
-  const users = await Student.paginate(filter, options);
-  return users;
+const queryStudents = async (filter, options) => {
+  const students = await Student.paginate(filter, options);
+  return students;
 };
 
 /**
- * Get user by id
+ * Get student by id
  * @param {ObjectId} id
  * @returns {Promise<Student>}
  */
-const getUserById = async (id) => {
+const getStudentById = async (id) => {
   return Student.findById(id);
 };
 
 /**
- * Update user by id
- * @param {ObjectId} userId
+ * Update student by id
+ * @param {ObjectId} studentId
  * @param {Object} updateBody
  * @returns {Promise<Student>}
  */
-const updateUserById = async (userId, updateBody) => {
-  const user = await getUserById(userId);
-  if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+const updateStudentById = async (studentId, updateBody) => {
+  const student = await getStudentById(studentId);
+  if (!student) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
   }
-  Object.assign(user, updateBody);
-  await user.save();
-  return user;
+  Object.assign(student, updateBody);
+  await student.save();
+  return student;
 };
 
 /**
- * Delete user by id
- * @param {ObjectId} userId
- * @returns {Promise<User>}
+ * Delete student by id
+ * @param {ObjectId} studentId
+ * @returns {Promise<Student>}
  */
-const deleteUserById = async (userId) => {
-  const user = await getUserById(userId);
-  if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+const deleteStudentById = async (studentId) => {
+  const student = await getStudentById(studentId);
+  if (!student) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
   }
-  await user.remove();
-  return user;
+  await student.remove();
+  return student;
 };
 
 module.exports = {
-  createUser,
-  queryUsers,
-  getUserById,
-  updateUserById,
-  deleteUserById,
+  createStudent,
+  queryStudents,
+  getStudentById,
+  updateStudentById,
+  deleteStudentById,
 };

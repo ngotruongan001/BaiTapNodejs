@@ -18,7 +18,6 @@ const studentSchema = mongoose.Schema(
     },
     born: {
       type: Number,
-      required: true,
     },
   },
   {
@@ -29,10 +28,6 @@ const studentSchema = mongoose.Schema(
 // add plugin that converts mongoose to json
 studentSchema.plugin(toJSON);
 studentSchema.plugin(paginate);
-
-studentSchema.pre('save', async function (next) {
-  next();
-});
 
 /**
  * @typedef Student

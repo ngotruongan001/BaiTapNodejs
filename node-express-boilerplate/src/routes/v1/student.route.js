@@ -8,13 +8,13 @@ const router = express.Router();
 
 router
 .route('/')
-.post(validate(studentValidation.createUser), studentController.createUser)
-.get(validate(studentValidation.getUsers), studentController.getUsers);
+.post(validate(studentValidation.createStudent), studentController.createStudent)
+.get(validate(studentValidation.getStudents), studentController.getStudents);
 
 router
-.route('/:userId')
-.get(validate(studentValidation.getUser), studentController.getUser)
-.patch(validate(studentValidation.updateUser), studentController.updateUser)
-.delete(validate(studentValidation.deleteUser), studentController.deleteUser);
+.route('/:studentId')
+.get(validate(studentValidation.getStudent), studentController.getStudent)
+.patch(validate(studentValidation.updateStudent), studentController.updateStudent)
+.delete(validate(studentValidation.deleteStudent), studentController.deleteStudent);
 
 module.exports = router;

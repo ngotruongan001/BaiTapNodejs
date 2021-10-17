@@ -3,6 +3,9 @@ const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const studentRoute = require('./student.route');
 const classRoute = require('./class.route');
+const productRoute = require('./product/product.route');
+const sizeRoute = require('./product/size.route');
+const categorieRoute = require('./product/categorie.route');
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
 
@@ -18,12 +21,24 @@ const defaultRoutes = [
     route: userRoute,
   },
   {
-    path: '/students',
-    route: studentRoute,
+    path: '/products',
+    route: productRoute,
+  },
+  {
+    path: '/sizes',
+    route: sizeRoute,
+  },
+  {
+    path: '/categories',
+    route: categorieRoute,
   },
   {
     path: '/classes',
     route: classRoute,
+  },
+  {
+    path: '/students',
+    route: studentRoute,
   },
 ];
 

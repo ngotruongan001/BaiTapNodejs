@@ -4,3 +4,6 @@ module.exports.tokenService = require('./token.service');
 module.exports.userService = require('./user.service');
 module.exports.studentService = require('./student.service');
 module.exports.classService = require('./class.service');
+module.exports.productService = require('./product/product.service');
+module.exports.sizeService = require('./product/size.service');
+module.exports.categorieService = require('./product/categorie.service');

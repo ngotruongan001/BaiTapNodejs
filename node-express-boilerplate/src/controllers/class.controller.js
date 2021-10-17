@@ -5,7 +5,7 @@ const catchAsync = require('../utils/catchAsync');
 const { classService } = require('../services');
 
 const createUser = catchAsync(async (req, res) => {
-  const user = await classService.createUser(req.body);
+  const user = await classService.x(req.body);
   res.status(httpStatus.CREATED).send(user);
 });
 

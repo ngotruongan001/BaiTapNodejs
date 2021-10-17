@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const { password, objectId } = require('./custom.validation');
 
-const createUser = {
+const createStudent = {
   body: Joi.object().keys({
     name: Joi.string().required(),
     address: Joi.string().required(),
@@ -9,7 +9,7 @@ const createUser = {
   }),
 };
 
-const getUsers = {
+const getStudents = {
   query: Joi.object().keys({
     name: Joi.string(),
     sortBy: Joi.string(),
@@ -18,15 +18,15 @@ const getUsers = {
   }),
 };
 
-const getUser = {
+const getStudent = {
   params: Joi.object().keys({
-    userId: Joi.string().custom(objectId),
+    studentId: Joi.string().custom(objectId),
   }),
 };
 
-const updateUser = {
+const updateStudent = {
   params: Joi.object().keys({
-    userId: Joi.required().custom(objectId),
+    studentId: Joi.required().custom(objectId),
   }),
   body: Joi.object()
     .keys({
@@ -37,16 +37,16 @@ const updateUser = {
     .min(1),
 };
 
-const deleteUser = {
+const deleteStudent = {
   params: Joi.object().keys({
-    userId: Joi.string().custom(objectId),
+    studentId: Joi.string().custom(objectId),
   }),
 };
 
 module.exports = {
-  createUser,
-  getUsers,
-  getUser,
-  updateUser,
-  deleteUser,
+  createStudent,
+  getStudents,
+  getStudent,
+  updateStudent,
+  deleteStudent,
 };

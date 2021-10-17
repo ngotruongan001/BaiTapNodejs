@@ -4,40 +4,40 @@ const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 const { studentService } = require('../services');
 
-const createUser = catchAsync(async (req, res) => {
-  const user = await studentService.createUser(req.body);
-  res.status(httpStatus.CREATED).send(user);
+const createStudent = catchAsync(async (req, res) => {
+  const student = await studentService.createStudent(req.body);
+  res.status(httpStatus.CREATED).send(student);
 });
 
-const getUsers = catchAsync(async (req, res) => {
+const getStudents = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await studentService.queryUsers(filter, options);
+  const result = await studentService.queryStudents(filter, options);
   res.send(result);
 });
 
-const getUser = catchAsync(async (req, res) => {
-  const user = await studentService.getUserById(req.params.userId);
-  if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+const getStudent = catchAsync(async (req, res) => {
+  const student = await studentService.getStudentById(req.params.studentId);
+  if (!student) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
   }
-  res.send(user);
+  res.send(student);
 });
 
-const updateUser = catchAsync(async (req, res) => {
-  const user = await studentService.updateUserById(req.params.userId, req.body);
-  res.send(user);
+const updateStudent = catchAsync(async (req, res) => {
+  const student = await studentService.updateStudentById(req.params.studentId, req.body);
+  res.send(student);
 });
 
-const deleteUser = catchAsync(async (req, res) => {
-  await studentService.deleteUserById(req.params.userId);
+const deleteStudent = catchAsync(async (req, res) => {
+  await studentService.deleteStudentById(req.params.studentId);
   res.status(httpStatus.NO_CONTENT).send();
 });
 
 module.exports = {
-  createUser,
-  getUsers,
-  getUser,
-  updateUser,
-  deleteUser,
+  createStudent,
+  getStudents,
+  getStudent,
+  updateStudent,
+  deleteStudent,
 };
